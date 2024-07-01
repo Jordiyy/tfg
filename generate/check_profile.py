@@ -20,14 +20,14 @@ def gender_dependant(profiles, column, check_percentage_women, check_percentage_
     men_percentage = men_count / men_total * 100
     women_percentage = women_count / women_total * 100
     
-    print(f"Porcentaje {column} mujeres ({check_percentage_women}%):", f"{women_percentage:.2f}%")
-    print(f"Porcentaje {column} hombres ({check_percentage_men}%):", f"{men_percentage:.2f}%")
+    #print(f"Porcentaje {column} mujeres ({check_percentage_women}%):", f"{women_percentage:.2f}%")
+    #print(f"Porcentaje {column} hombres ({check_percentage_men}%):", f"{men_percentage:.2f}%")
     if ((check_percentage_men - variables.TOLERANCE) <= men_percentage <= (check_percentage_men + variables.TOLERANCE)) and ((check_percentage_women - variables.TOLERANCE) <= women_percentage <= (check_percentage_women + variables.TOLERANCE)):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(men_percentage, 2), round(women_percentage, 2)
     else:
-        print('ERROR')
-        return 1
+        #print('ERROR')
+        return 1, round(men_percentage, 2), round(women_percentage, 2)
 
 
 def non_gender_dependant(profiles, column, check_percentage):
@@ -39,13 +39,13 @@ def non_gender_dependant(profiles, column, check_percentage):
             
     count_percentage = count / len(profiles) * 100
     
-    print(f"Porcentaje {column} ({check_percentage}%):", f"{count_percentage:.2f}%")
+    #print(f"Porcentaje {column} ({check_percentage}%):", f"{count_percentage:.2f}%")
     if (check_percentage - variables.TOLERANCE) <= count_percentage <= (check_percentage + variables.TOLERANCE):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(count_percentage, 2)
     else:
-        print('ERROR')
-        return 1
+        #print('ERROR')
+        return 1, round(count_percentage, 2)
 
 
 def check_gender(profiles):
@@ -61,14 +61,14 @@ def check_gender(profiles):
     women_percentage = women / len(profiles) * 100
     men_percentage = men / len(profiles) * 100
     
-    print(f"Porcentaje mujer ({100 - variables.MENS_PERCENTAGE}%):", f"{women_percentage:.2f}%")
-    print(f"Porcentaje hombre ({variables.MENS_PERCENTAGE}%):", f"{men_percentage:.2f}%")
+    #print(f"Porcentaje mujer ({100 - variables.MENS_PERCENTAGE}%):", f"{women_percentage:.2f}%")
+    #print(f"Porcentaje hombre ({variables.MENS_PERCENTAGE}%):", f"{men_percentage:.2f}%")
     if ((variables.MENS_PERCENTAGE - variables.TOLERANCE) <= men_percentage <= (variables.MENS_PERCENTAGE + variables.TOLERANCE)) and ((100 - variables.MENS_PERCENTAGE - variables.TOLERANCE) <= women_percentage <= (100 - variables.MENS_PERCENTAGE + variables.TOLERANCE)):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(men_percentage, 2), round(women_percentage, 2)
     else:
-        print('ERROR')
-        return 1
+        #print('ERROR')
+        return 1, round(men_percentage, 2), round(women_percentage, 2)
     
 
 def check_ethnic(profiles):
@@ -88,15 +88,15 @@ def check_ethnic(profiles):
     african_percentage = african / len(profiles) * 100
     asian_percentage = asian / len(profiles) * 100
     
-    print(f"Porcentaje caucásico ({variables.CAUCASIAN_ETHNIC_PERCENTAGE}%):", f"{caucasian_percentage:.2f}%")
-    print(f"Porcentaje africano ({variables.AFRICAN_ETHNIC_PERCENTAGE}%):", f"{african_percentage:.2f}%")
-    print(f"Porcentaje asiático ({variables.ASIAN_ETHNIC_PERCENTAGE}%):", f"{asian_percentage:.2f}%")
+    #print(f"Porcentaje caucásico ({variables.CAUCASIAN_ETHNIC_PERCENTAGE}%):", f"{caucasian_percentage:.2f}%")
+    #print(f"Porcentaje africano ({variables.AFRICAN_ETHNIC_PERCENTAGE}%):", f"{african_percentage:.2f}%")
+    #print(f"Porcentaje asiático ({variables.ASIAN_ETHNIC_PERCENTAGE}%):", f"{asian_percentage:.2f}%")
     if ((variables.CAUCASIAN_ETHNIC_PERCENTAGE - variables.TOLERANCE) <= caucasian_percentage <= (variables.CAUCASIAN_ETHNIC_PERCENTAGE + variables.TOLERANCE)) and ((variables.AFRICAN_ETHNIC_PERCENTAGE - variables.TOLERANCE) <= african_percentage <= (variables.AFRICAN_ETHNIC_PERCENTAGE + variables.TOLERANCE)) and ((variables.ASIAN_ETHNIC_PERCENTAGE - variables.TOLERANCE) <= asian_percentage <= (variables.ASIAN_ETHNIC_PERCENTAGE + variables.TOLERANCE)):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(caucasian_percentage, 2), round(african_percentage, 2)
     else:
-        print('ERROR')
-        return 1
+        #print('ERROR')
+        return 1, round(caucasian_percentage, 2), round(african_percentage, 2)
     
     
 def check_poverty(profiles):
@@ -128,16 +128,16 @@ def check_icm(profiles):
     percentage_between_25_30 = between_25_30 / len(profiles) * 100
     percentage_more_30 = more_30 / len(profiles) * 100
     
-    print(f"Porcentaje icm menor 25 (32%):", f"{percentage_less_25:.2f}%")
-    print(f"Porcentaje icm ente 25 y 30 (39%):", f"{percentage_between_25_30:.2f}%")
-    print(f"Porcentaje icm mayor 30 (29%):", f"{percentage_more_30:.2f}%")
+    #print(f"Porcentaje icm menor 25 (32%):", f"{percentage_less_25:.2f}%")
+    #print(f"Porcentaje icm ente 25 y 30 (39%):", f"{percentage_between_25_30:.2f}%")
+    #print(f"Porcentaje icm mayor 30 (29%):", f"{percentage_more_30:.2f}%")
     
     if ((32 - variables.TOLERANCE) <= percentage_less_25 <= (32 + variables.TOLERANCE)) and ((39 - variables.TOLERANCE) <= percentage_between_25_30 <= (39 + variables.TOLERANCE)) and ((29 - variables.TOLERANCE) <= percentage_more_30 <= (29 + variables.TOLERANCE)):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(percentage_less_25, 2), round(percentage_between_25_30, 2), round(percentage_more_30, 2)
     else:
-        print('ERROR')
-        return 1
+        #print('ERROR')
+        return 1, round(percentage_less_25, 2), round(percentage_between_25_30, 2), round(percentage_more_30, 2)
     
 
 def check_mellitus_diabetis(profiles):
@@ -179,14 +179,14 @@ def check_atrial_fibrillation(profiles):
     atrial_less_40_percentage = atrial_less_40 / age_less_40 * 100
     atrial_more_40_percentage = atrial_more_40 / age_more_40 * 100
     
-    print(f"Porcentaje atrial ({variables.ATRIAL_FIBRILLATION_PERCENTAGE}%):", f"{atrial_less_40_percentage:.2f}%")
-    print(f"Porcentaje atrial age dependant ({variables.ATRIAL_FIBRILLATION_AGE_DEPENDANT_PERCENTAGE}%):", f"{atrial_more_40_percentage:.2f}%")
+    #print(f"Porcentaje atrial ({variables.ATRIAL_FIBRILLATION_PERCENTAGE}%):", f"{atrial_less_40_percentage:.2f}%")
+    #print(f"Porcentaje atrial age dependant ({variables.ATRIAL_FIBRILLATION_AGE_DEPENDANT_PERCENTAGE}%):", f"{atrial_more_40_percentage:.2f}%")
     if ((variables.ATRIAL_FIBRILLATION_PERCENTAGE - variables.TOLERANCE) <= atrial_less_40_percentage <= (variables.ATRIAL_FIBRILLATION_PERCENTAGE + variables.TOLERANCE)) and ((variables.ATRIAL_FIBRILLATION_AGE_DEPENDANT_PERCENTAGE - variables.TOLERANCE) <= atrial_more_40_percentage <= (variables.ATRIAL_FIBRILLATION_AGE_DEPENDANT_PERCENTAGE + variables.TOLERANCE)):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(atrial_less_40_percentage, 2), round(atrial_more_40_percentage, 2)
     else:
-        print('ERROR')
-        return 1  
+        #print('ERROR')
+        return 1, round(atrial_less_40_percentage, 2), round(atrial_more_40_percentage, 2)
 
 
 def check_anxiety_disorder(profiles):
@@ -210,13 +210,13 @@ def check_colt(profiles):
             
     colt_percentage = colt / len(profiles) * 100
     
-    print(f"Porcentaje colt mayor a 200 mg/dL ({variables.COLT_PERCENTAGE}%):", f"{colt_percentage:.2f}%")
+    #print(f"Porcentaje colt mayor a 200 mg/dL ({variables.COLT_PERCENTAGE}%):", f"{colt_percentage:.2f}%")
     if (variables.COLT_PERCENTAGE - variables.TOLERANCE) <= colt_percentage <= (variables.COLT_PERCENTAGE + variables.TOLERANCE):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(colt_percentage, 2)
     else:
-        print('ERROR')
-        return 1
+        #print('ERROR')
+        return 1, round(colt_percentage, 2)
 
 
 def check_ldl(profiles):
@@ -228,13 +228,13 @@ def check_ldl(profiles):
             
     ldl_percentage = ldl / len(profiles) * 100
     
-    print(f"Porcentaje colesterol ldl mayor a 130 mg/dL ({variables.LDL_PERCENTAGE}%):", f"{ldl_percentage:.2f}%")
+    #print(f"Porcentaje colesterol ldl mayor a 130 mg/dL ({variables.LDL_PERCENTAGE}%):", f"{ldl_percentage:.2f}%")
     if (variables.LDL_PERCENTAGE - variables.TOLERANCE) <= ldl_percentage <= (variables.LDL_PERCENTAGE + variables.TOLERANCE):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(ldl_percentage, 2)
     else:
-        print('ERROR')
-        return 1
+        #print('ERROR')
+        return 1, round(ldl_percentage, 2)
 
 
 def check_tg(profiles):
@@ -256,15 +256,15 @@ def check_tg(profiles):
     men_tg_percentage = men_tg / men * 100
     women_tg_percentage = women_tg / women * 100
     
-    print(f"Porcentaje triglicéridos mujeres mayor 150 mg/dL ({variables.WOMEN_TG_PERCENTAGE}%):", f"{women_tg_percentage:.2f}%")
-    print(f"Porcentaje triglicéridos hombres mayor 150 mg/dL ({variables.MEN_TG_PERCENTAGE}%):", f"{men_tg_percentage:.2f}%")
+    #print(f"Porcentaje triglicéridos mujeres mayor 150 mg/dL ({variables.WOMEN_TG_PERCENTAGE}%):", f"{women_tg_percentage:.2f}%")
+    #print(f"Porcentaje triglicéridos hombres mayor 150 mg/dL ({variables.MEN_TG_PERCENTAGE}%):", f"{men_tg_percentage:.2f}%")
     
     if ((variables.MEN_TG_PERCENTAGE - variables.TOLERANCE) <= men_tg_percentage <= (variables.MEN_TG_PERCENTAGE + variables.TOLERANCE)) and ((variables.WOMEN_TG_PERCENTAGE - variables.TOLERANCE) <= women_tg_percentage <= (variables.WOMEN_TG_PERCENTAGE + variables.TOLERANCE)):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(men_tg_percentage, 2), round(women_tg_percentage, 2)
     else:
-        print('ERROR')
-        return 1
+        #print('ERROR')
+        return 1, round(men_tg_percentage, 2), round(women_tg_percentage, 2)
 
 
 def check_antidepressants(profiles):
@@ -343,13 +343,13 @@ def check_alzheimer(profiles):
             
     alzheimer_more_65_percentage = alzheimer_more_65 / age_more_65 * 100
     
-    print(f"Porcentaje alzheimer ({variables.LOW_ALZHEIMER_PERCENTAGE}%):", f"{alzheimer_more_65_percentage:.2f}%")
+    #print(f"Porcentaje alzheimer ({variables.LOW_ALZHEIMER_PERCENTAGE}%):", f"{alzheimer_more_65_percentage:.2f}%")
     if (variables.LOW_ALZHEIMER_PERCENTAGE - variables.TOLERANCE) <= alzheimer_more_65_percentage <= (variables.LOW_ALZHEIMER_PERCENTAGE + variables.TOLERANCE):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(alzheimer_more_65_percentage, 2)
     else:
-        print('ERROR')
-        return 1
+        #print('ERROR')
+        return 1, round(alzheimer_more_65_percentage, 2)
 
 
 def check_systolic_blood_pressure(profiles):
@@ -371,14 +371,14 @@ def check_systolic_blood_pressure(profiles):
     men_percentage = men_systolic_count / men_total * 100
     women_percentage = women_systolic_count / women_total * 100
     
-    print(f"Porcentaje systolic_blood_pressure mujeres ({variables.WOMEN_SYSTOLIC_BLOOD_PRESSURE_PERCENTAGE}%):", f"{women_percentage:.2f}%")
-    print(f"Porcentaje systolic_blood_pressure hombres ({variables.MEN_SYSTOLIC_BLOOD_PRESSURE_PERCENTAGE}%):", f"{men_percentage:.2f}%")
+    #print(f"Porcentaje systolic_blood_pressure mujeres ({variables.WOMEN_SYSTOLIC_BLOOD_PRESSURE_PERCENTAGE}%):", f"{women_percentage:.2f}%")
+    #print(f"Porcentaje systolic_blood_pressure hombres ({variables.MEN_SYSTOLIC_BLOOD_PRESSURE_PERCENTAGE}%):", f"{men_percentage:.2f}%")
     if ((variables.MEN_SYSTOLIC_BLOOD_PRESSURE_PERCENTAGE - variables.TOLERANCE) <= men_percentage <= (variables.MEN_SYSTOLIC_BLOOD_PRESSURE_PERCENTAGE + variables.TOLERANCE)) and ((variables.WOMEN_SYSTOLIC_BLOOD_PRESSURE_PERCENTAGE - variables.TOLERANCE) <= women_percentage <= (variables.WOMEN_SYSTOLIC_BLOOD_PRESSURE_PERCENTAGE + variables.TOLERANCE)):
-        print('OK')
-        return 0
+        #print('OK')
+        return 0, round(men_percentage, 2), round(women_percentage, 2)
     else:
-        print('ERROR')
-        return 1
+        #print('ERROR')
+        return 1, round(men_percentage, 2), round(women_percentage, 2)
 
 
 

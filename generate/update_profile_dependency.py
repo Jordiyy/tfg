@@ -1,6 +1,8 @@
 import generate_values
 import variables
 import score_steps
+import random
+import math
 
 
 def update_gender_dependant(profile):
@@ -127,3 +129,24 @@ def get_score(profile):
     profile['score'] = score_steps.get_final_risk(chd_risk, non_chd_risk)
     
     return profile 
+
+
+def fake_score(profile):
+    if int(profile['age'] / 365) < 50:
+        profile['score'] = round(random.gauss(5, 1.6667), 2)
+    elif 50 <= int(profile['age'] / 365) <= 69:
+        profile['score'] = round(random.gauss(7.5, 3.3333), 2)
+    else:
+        profile['score'] = round(random.gauss(11.25, 4.1667), 2)
+        
+    if profile['score'] < 0:
+        profile['score'] = 0
+    
+    return profile
+
+
+def fake_score_manual(profile):
+    profile['score'] = (int(profile['age'] / 365) / 80) * ((profile['ldl'] / profile['colt']) * (profile['systolic_blood_pressure'] / 50) * (1.5 * profile['smoke']))
+    profile['score'] = math.exp(profile['score'])
+        
+    return profile
