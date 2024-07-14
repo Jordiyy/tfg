@@ -491,14 +491,14 @@ print(f'Nº repeticiones hasta satisfacer los requisitos: {count}')
 
 
 # Saves generated profile to CSV
-with open('score_manual.csv', 'w', newline='') as file:
+with open('./compare/score_manual.csv', 'w', newline='') as file:
     writer_to_csv = csv.writer(file, delimiter=';')
     writer_to_csv.writerow(newCSV[0])
     for line in newCSV:
         writer_to_csv.writerow(line.values())
         
 
-with open('validation.csv', 'w', newline='') as f:
+with open('./generate/validation.csv', 'w', newline='') as f:
     writer = csv.writer(f, delimiter='\t')
     writer.writerow(["variable", "porcentaje_esperado (%)", "resultado (%)"])
     for line in res:
